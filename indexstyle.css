@@ -73,9 +73,12 @@ html,
                 font-size: 11px
             }
         }
-
+.blue_button {
+  background-color: #D3E4FF !important;
+}
 .btn {
     font-family: "Google Sans",Roboto,var(--noto-ff),Arial,sans-serif !important;
+    
     font-size: 0.875rem !important;
     font-weight: 500 !important;
     letter-spacing: 0 !important;
