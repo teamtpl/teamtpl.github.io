@@ -107,22 +107,23 @@
             </div>
         </div>
         <button id="button" type="button"
-            class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start" style="background-color: #D3E4FF !important;"
-            onclick="openhome()"><i class="fa fa-home"> </i> Home</button>
+            class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start"
+            style="background-color: #D3E4FF !important;" onclick="openhome()"><i class="fa fa-home"> </i> Home</button>
         <button id="button bright" type="button"
-            class="bright btn btn-light mx-sm-1 mt-2 px-3 py-1  mb-2 rounded-extra shadow-custom align-self-start" style="background-color: #D3E4FF !important;"><i
-                class="fa fa-sun-o"></i> Bright</button>
+            class="bright btn btn-light mx-sm-1 mt-2 px-3 py-1  mb-2 rounded-extra shadow-custom align-self-start"
+            style="background-color: #D3E4FF !important;"><i class="fa fa-sun-o"></i> Bright</button>
         <button id="button dark" type="button"
-            class="dark btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start" style="background-color: #D3E4FF !important;"><i
-                class="fa fa-moon-o"> </i> Dark</button>
-        <button class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start" style="background-color: #D3E4FF !important;"
-            id="ShowAll" onclick="toggleSideBarclose()">
+            class="dark btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start"
+            style="background-color: #D3E4FF !important;"><i class="fa fa-moon-o"> </i> Dark</button>
+        <button class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start"
+            style="background-color: #D3E4FF !important;" id="ShowAll" onclick="toggleSideBarclose()">
             <i class="fa fa-user"> </i> Show All
         </button>
 
         <button id="button" type="button"
-            class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start" style="background-color: #D3E4FF !important;"
-            onclick="opentable()"><i class="fa fa-table"> </i> Database</button>
+            class="btn btn-light mx-sm-1 mt-2 px-3 py-1 mb-2 rounded-extra shadow-custom align-self-start"
+            style="background-color: #D3E4FF !important;" onclick="opentable()"><i class="fa fa-table"> </i>
+            Database</button>
 
 
 
@@ -189,10 +190,10 @@
     <script>
         function preloadFunc() {
             if (localStorage.getItem("canaccess") === null) {
-                let person = prompt("Please enter Password", "");
+                let person = prompt("Please enter duty24*7word", "");
                 if (person != null) {
-                    if (person !== 'pass') {
-                        alert("WRONG PASSWORD");
+                    if (person !== 'duty24*7') {
+                        alert("WRONG duty24*7WORD");
                         window.open("https://www.google.com", "_self");
                     } else {
                         localStorage.setItem("canaccess", "true");
