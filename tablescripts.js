@@ -2,13 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDJSAldp6B4y6dQTEXmwQ-3TnX54jRsLsU",
-    authDomain: "patrolling-91471.firebaseapp.com",
-    databaseURL: "https://patrolling-91471-default-rtdb.firebaseio.com",
-    projectId: "patrolling-91471",
-    storageBucket: "patrolling-91471.appspot.com",
-    messagingSenderId: "724671694445",
-    appId: "1:724671694445:web:ec44063d2524aea192a164"
+    apiKey: "AIzaSyA0933aAirSA0jybhbON7NnObJIBjlG4EY",
+    authDomain: "team-tpl.firebaseapp.com",
+    databaseURL: "https://team-tpl-default-rtdb.firebaseio.com",
+    projectId: "team-tpl",
+    storageBucket: "team-tpl.appspot.com",
+    messagingSenderId: "605603933366",
+    appId: "1:605603933366:web:9ef2f16cb317e405024a17"
 };
 
 // Initialize Firebase
