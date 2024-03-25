@@ -47,7 +47,6 @@ let layer = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
 });
 map.addLayer(layer)
 
-
 const params = new URLSearchParams(document.location.search);
 const s = params.get("vehicle");
 
@@ -73,25 +72,31 @@ onValue(usersLocation, (snapshot) => {
     document.getElementById('MobileNumber').innerHTML = data["MobileNumber"];
     document.getElementById('PoliceStation').innerHTML = data["PoliceStation"];
     document.getElementById('NatureofDuty').innerHTML = data["NatureofDuty"];
-    document.getElementById('AreaAllocaed').innerHTML = data["AreaAllocaed"];
+    document.getElementById('AreaAllocaed').innerHTML = data["AreaAllocated"];
     document.getElementById('Unit').innerHTML = data["Unit"];
     document.getElementById('Time').innerHTML = moment(data["Time"]).format('Do MMM YYYY h:mm:ss a');
+    if (!(data["lat"] === undefined)) {
+        livelatlng = [data["lat"], data["long"]];
+        latlon.push([data["lat"], data["long"]])
+    }
     
-    livelatlng = [data["lat"], data["long"]];
-    latlon.push([data["lat"], data["long"]])
+    
     if (showlive) {
         markersonchart.forEach(element => {
             map.removeLayer(element)
         });
-        var marker = L.marker([data["lat"], data["long"]], { icon: svgIcon }).addTo(map).
-            bindPopup("Live")
-            .openPopup();
-        // .
-        // bindPopup("<b>Vehicle Number : </b>" + data["carNumber"] + '<br>' + "<b>Highway Number : </b>" + data["highwayNumber"] + '<br>' + "<b>Phone  : </b>" + data["phoneNumber"] + '<br>' + "<b>Police Incharge Name : </b>" + data["policeInChargeName"] + '<br>' + "<b>Sector Number : </b>" + data["sectorNumber"] + '<br>' + "<b>Time : </b>" + moment(data["time"]).format('Do MMM YYYY h:mm:ss a') + '<br>' + "<b>Zone : </b>" + data["zoneNumber"] + '<br> <a href="history.html?vehicle=' + data["carNumber"] + '">View History</a>')
-        // .openPopup();
-        var bounds = new L.LatLngBounds(latlon).extend();
-        map.fitBounds(bounds);
-        markersonchart.push(marker);
+        if (!(data["lat"] === undefined)) {
+            var marker = L.marker([data["lat"], data["long"]], { icon: svgIcon }).addTo(map).
+                bindPopup("Live")
+                .openPopup();
+            // .
+            // bindPopup("<b>Vehicle Number : </b>" + data["carNumber"] + '<br>' + "<b>Highway Number : </b>" + data["highwayNumber"] + '<br>' + "<b>Phone  : </b>" + data["phoneNumber"] + '<br>' + "<b>Police Incharge Name : </b>" + data["policeInChargeName"] + '<br>' + "<b>Sector Number : </b>" + data["sectorNumber"] + '<br>' + "<b>Time : </b>" + moment(data["time"]).format('Do MMM YYYY h:mm:ss a') + '<br>' + "<b>Zone : </b>" + data["zoneNumber"] + '<br> <a href="history.html?vehicle=' + data["carNumber"] + '">View History</a>')
+            // .openPopup();
+            var bounds = new L.LatLngBounds(latlon).extend();
+            map.fitBounds(bounds);
+            markersonchart.push(marker);
+        }
+        
     }
 
     console.log(data);
@@ -227,25 +232,25 @@ $(document).ready(function () {
 });
 
 
-$(function () {
-    $("body").on('click', '#hello', function () {
-        markersonchart.forEach(element => {
-            map.removeLayer(element)
-        });
-        var latlon = []
-        showlive = false;
-        var item = $(this).parent().prev();
-        var lng = item.text();
-        var lat = item.prev().text();
-        var time = item.prev().prev().text();
-        console.log(lng, lat, time);
-        latlon.push([lat, lng])
-        var marker = L.marker([lat, lng], { icon: svgIcon }).addTo(map).bindPopup("<b>Time : </b>" + time).openPopup();
-        var bounds = new L.LatLngBounds(latlon).extend();
-        map.fitBounds(bounds);
-        markersonchart.push(marker);
-    });
-});
+// $(function () {
+//     $("body").on('click', '#hello', function () {
+//         markersonchart.forEach(element => {
+//             map.removeLayer(element)
+//         });
+//         var latlon = []
+//         showlive = false;
+//         var item = $(this).parent().prev();
+//         var lng = item.text();
+//         var lat = item.prev().text();
+//         var time = item.prev().prev().text();
+//         console.log(lng, lat, time);
+//         latlon.push([lat, lng])
+//         var marker = L.marker([lat, lng], { icon: svgIcon }).addTo(map).bindPopup("<b>Time : </b>" + time).openPopup();
+//         var bounds = new L.LatLngBounds(latlon).extend();
+//         map.fitBounds(bounds);
+//         markersonchart.push(marker);
+//     });
+// });
 
 // $('body').on('click', '#hello', function () {
 //     var data = $("#myTable").row($(this).parents('tr')).data();

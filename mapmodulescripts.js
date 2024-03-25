@@ -142,12 +142,13 @@ function showonly(para) {
     });
     vehicles.forEach(element => {
         if (Object.values(element).join(' ').toLowerCase().includes(para.toLowerCase())) {
+            if (!(element["lat"] === undefined)){
             console.log(element["lat"], element["lng"])
             latlon.push([element["lat"], element["lng"]])
             var marker = L.marker([element["lat"], element["lng"]], { icon: svgIcon }).addTo(map).
                 bindPopup("<b>Vehicle Number : </b>" + element["carNumber"].toUpperCase() + '<br>' + "<b>Highway Number : </b>" + element["highwayNumber"] + '<br>' + "<b>Phone  : </b>" + element["phoneNumber"] + '<br>' + "<b>Police Incharge Name : </b>" + element["policeInChargeName"] + '<br>' + "<b>Sector Number : </b>" + element["sectorNumber"] + '<br>' + "<b>Time : </b>" + moment(element["time"]).format('Do MMM YYYY h:mm:ss a') + '<br>' + "<b>Zone : </b>" + element["zoneNumber"] + '<br> <a href="history.html?vehicle=' + element["carNumber"] + '">View History</a>' + element)
                 .openPopup();
-            markersonchart.push(marker);
+            markersonchart.push(marker);}
         }
 
     });
@@ -163,6 +164,7 @@ function updateLocation() {
         });
 
         vehicles.forEach(element => {
+            if (!(element["lat"] === undefined)){
             console.log(element["lat"], element["long"])
             latlon.push([element["lat"], element["long"]])
             var marker = L.marker([element["lat"], element["long"]], { icon: svgIcon }).addTo(map).
@@ -176,7 +178,7 @@ function updateLocation() {
                     '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
                     '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>')
                 .openPopup();
-            markersonchart.push(marker);
+            markersonchart.push(marker);}
 
         });
         var bounds = new L.LatLngBounds(latlon).extend();

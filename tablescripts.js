@@ -24,8 +24,10 @@ get(child(dbRef, `User`)).then((snapshot) => {
         var vehicles = []
         Object.keys(snapshot.val()).forEach(element => {
             const vehicle = snapshot.val()[element];
+            
             vehicle.id = element; // Adding vehicleid as id
-            vehicles.push(vehicle);
+                vehicles.push(vehicle);
+            
         });
         console.log(vehicles)
         $(document).ready(function () {
@@ -53,18 +55,26 @@ get(child(dbRef, `User`)).then((snapshot) => {
                     { data: "long" }
                     
                 ],
-                columnDefs: [{
-                    targets: 6,
-                    render: function (data) {
-                        return moment(data).format('Do MMM YYYY h:mm:ss a');
+                columnDefs: [
+                    {
+                        targets: [6], // Indexes of timestamp, lat, and long columns
+                        render: function (data) {
+                            return data ? moment(data).format('Do MMM YYYY h:mm:ss a') : "undefined";
+                        }
+                    },
+                    {
+                        targets: [0], // Indexes of Name column
+                        render: function (data, type, row) {
+                            return data ? '<a href="history.html?vehicle=' + row.id + '">' + data.toUpperCase() + '</a>' : "undefined";
+                        }
+                    },
+                    {
+                        targets: [1, 2, 3, 4, 5, 7, 8], // Indexes of MobileNumber, PoliceStation, NatureofDuty, AreaAllocated, and Unit columns
+                        render: function (data) {
+                            return data ? data : "undefined";
+                        }
                     }
-                }, {
-                    targets: 0,
-                    render: function (data, type, row) {
-                        return '<a href="history.html?vehicle=' + row.id + '">' + data.toUpperCase() + '</a>';
-                     // return '<a href="history.html?vehicle=' + data + ' >' + data.toUpperCase() + ' </a > ';
-                    }
-                }]
+                ]
             });
         });
 
