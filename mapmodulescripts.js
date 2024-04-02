@@ -178,12 +178,13 @@ function updateLocation() {
                         + "<b>Time : </b>" + moment(element["timestamp"]).format('Do MMM YYYY h:mm:ss a') +
                         '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
                         '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>')
-                    .openPopup();
+                    ;
                 markersonchart.push(marker);
             }
 
         });
-        var bounds = new L.LatLngBounds(latlon).extend();
+        var bounds = new L.LatLngBounds(latlon);
+        bounds = bounds.pad(0.1); // Adjust the margin here (0.1 represents 10%)
         map.fitBounds(bounds);
     }
 
