@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, onValue, set} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA0933aAirSA0jybhbON7NnObJIBjlG4EY",
@@ -45,7 +45,7 @@ L.control.zoom({
 }).addTo(map);
 
 let layer = new L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
+    maxZoom: 18,
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 map.addLayer(layer)
@@ -142,13 +142,14 @@ function showonly(para) {
     });
     vehicles.forEach(element => {
         if (Object.values(element).join(' ').toLowerCase().includes(para.toLowerCase())) {
-            if (!(element["lat"] === undefined)){
-            console.log(element["lat"], element["lng"])
-            latlon.push([element["lat"], element["lng"]])
-            var marker = L.marker([element["lat"], element["lng"]], { icon: svgIcon }).addTo(map).
-                bindPopup("<b>Vehicle Number : </b>" + element["carNumber"].toUpperCase() + '<br>' + "<b>Highway Number : </b>" + element["highwayNumber"] + '<br>' + "<b>Phone  : </b>" + element["phoneNumber"] + '<br>' + "<b>Police Incharge Name : </b>" + element["policeInChargeName"] + '<br>' + "<b>Sector Number : </b>" + element["sectorNumber"] + '<br>' + "<b>Time : </b>" + moment(element["time"]).format('Do MMM YYYY h:mm:ss a') + '<br>' + "<b>Zone : </b>" + element["zoneNumber"] + '<br> <a href="history.html?vehicle=' + element["carNumber"] + '">View History</a>' + element)
-                .openPopup();
-            markersonchart.push(marker);}
+            if (!(element["lat"] === undefined)) {
+                console.log(element["lat"], element["lng"])
+                latlon.push([element["lat"], element["lng"]])
+                var marker = L.marker([element["lat"], element["lng"]], { icon: svgIcon }).addTo(map).
+                    bindPopup("<b>Vehicle Number : </b>" + element["carNumber"].toUpperCase() + '<br>' + "<b>Highway Number : </b>" + element["highwayNumber"] + '<br>' + "<b>Phone  : </b>" + element["phoneNumber"] + '<br>' + "<b>Police Incharge Name : </b>" + element["policeInChargeName"] + '<br>' + "<b>Sector Number : </b>" + element["sectorNumber"] + '<br>' + "<b>Time : </b>" + moment(element["time"]).format('Do MMM YYYY h:mm:ss a') + '<br>' + "<b>Zone : </b>" + element["zoneNumber"] + '<br> <a href="history.html?vehicle=' + element["carNumber"] + '">View History</a>' + element)
+                    .openPopup();
+                markersonchart.push(marker);
+            }
         }
 
     });
@@ -164,21 +165,22 @@ function updateLocation() {
         });
 
         vehicles.forEach(element => {
-            if (!(element["lat"] === undefined)){
-            console.log(element["lat"], element["long"])
-            latlon.push([element["lat"], element["long"]])
-            var marker = L.marker([element["lat"], element["long"]], { icon: svgIcon }).addTo(map).
-                bindPopup("<b>Name : </b>" + element["Name"].toUpperCase() + '<br>'
-                    + "<b>Nobile Number : </b>" + element["MobileNumber"] + '<br>'
-                    + "<b>Police Station  : </b>" + element["PoliceStation"] + '<br>'
-                    + "<b>Nature of Duty : </b>" + element["NatureofDuty"] + '<br>'
-                    + "<b>Area Allocated : </b>" + element["AreaAllocated"] + '<br>'
-                    + "<b>Unit : </b>" + element["Unit"] + '<br>'
-                    + "<b>Time : </b>" + moment(element["timestamp"]).format('Do MMM YYYY h:mm:ss a') +
-                    '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
-                    '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>')
-                .openPopup();
-            markersonchart.push(marker);}
+            if (!(element["lat"] === undefined)) {
+                console.log(element["lat"], element["long"])
+                latlon.push([element["lat"], element["long"]])
+                var marker = L.marker([element["lat"], element["long"]], { icon: svgIcon }).addTo(map).
+                    bindPopup("<b>Name : </b>" + element["Name"].toUpperCase() + '<br>'
+                        + "<b>Nobile Number : </b>" + element["MobileNumber"] + '<br>'
+                        + "<b>Police Station  : </b>" + element["PoliceStation"] + '<br>'
+                        + "<b>Nature of Duty : </b>" + element["NatureofDuty"] + '<br>'
+                        + "<b>Area Allocated : </b>" + element["AreaAllocated"] + '<br>'
+                        + "<b>Unit : </b>" + element["Unit"] + '<br>'
+                        + "<b>Time : </b>" + moment(element["timestamp"]).format('Do MMM YYYY h:mm:ss a') +
+                        '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
+                        '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>')
+                    .openPopup();
+                markersonchart.push(marker);
+            }
 
         });
         var bounds = new L.LatLngBounds(latlon).extend();
@@ -266,14 +268,14 @@ function addtosearchlist(para) {
             // console.log(Object.values(element).join(' ').toLowerCase())
             var div = document.createElement('div');
             div.innerHTML = "<b>Name : </b>" + element["Name"].toUpperCase() + '<br>'
-                    + "<b>Nobile Number : </b>" + element["MobileNumber"] + '<br>'
-                    + "<b>Police Station  : </b>" + element["PoliceStation"] + '<br>'
-                    + "<b>Nature of Duty : </b>" + element["NatureofDuty"] + '<br>'
-                    + "<b>Area Allocated : </b>" + element["AreaAllocated"] + '<br>'
-                    + "<b>Unit : </b>" + element["Unit"] + '<br>'
-                    + "<b>Time : </b>" + moment(element["timestamp"]).format('Do MMM YYYY h:mm:ss a') +
-                    '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
-                    '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>' + '<hr> '
+                + "<b>Nobile Number : </b>" + element["MobileNumber"] + '<br>'
+                + "<b>Police Station  : </b>" + element["PoliceStation"] + '<br>'
+                + "<b>Nature of Duty : </b>" + element["NatureofDuty"] + '<br>'
+                + "<b>Area Allocated : </b>" + element["AreaAllocated"] + '<br>'
+                + "<b>Unit : </b>" + element["Unit"] + '<br>'
+                + "<b>Time : </b>" + moment(element["timestamp"]).format('Do MMM YYYY h:mm:ss a') +
+                '<br> <a href="history.html?vehicle=' + element["id"] + '">View History</a>' +
+                '<br> <a class="livechat" href="#" data-id="' + element["id"] + '">Live Chat</a>' + '<hr> '
             div.setAttribute("id", element["Name"].toUpperCase());
             div.setAttribute("class", "pointerclass");
             document.getElementById("searchlist").appendChild(div);
@@ -400,7 +402,7 @@ onValue(chatHistoryRef, function (snapshot) {
         // Iterate over each key-value pair in the child snapshot
         Object.keys(childSnapshot.val()).forEach(function (timestamp) {
             // Convert the Unix timestamp to a JavaScript Date object
-            var messageTime = parseInt(timestamp) ; // Convert seconds to milliseconds
+            var messageTime = parseInt(timestamp); // Convert seconds to milliseconds
 
             // Calculate the difference in seconds between the current time and the message time
             var differenceInSeconds = (currentTimeInSeconds - messageTime);
@@ -409,7 +411,7 @@ onValue(chatHistoryRef, function (snapshot) {
             if (differenceInSeconds <= 5 && childSnapshot.val()[timestamp]['sentBy'] == "client") {
                 // Message was sent within the last 5 seconds
                 var deviceName = "";
-                
+
                 vehicles.forEach(function (item) {
                     if (item.id === childSnapshot.key) {
                         deviceName = item.Name;
@@ -417,7 +419,7 @@ onValue(chatHistoryRef, function (snapshot) {
                 });
                 Snackbar.show({ text: '<strong>' + deviceName + " : </strong>" + childSnapshot.val()[timestamp]['message'], pos: 'top-right' });
                 // console.log("Message sent within the last 5 seconds:", childSnapshot.val()[timestamp]['message'], deviceName);
-            } 
+            }
         });
     });
 }, function (error) {

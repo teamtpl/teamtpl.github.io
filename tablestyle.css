@@ -10,7 +10,7 @@ body {
 
 thead {
     color: #fff;
-    background: #36304a;
+    background: #ff8000c7;
     margin-right: -15px;
     margin-left: -15px;
     font-family: Open Sans !important;
@@ -88,13 +88,13 @@ table.dataTable thead th, table.dataTable tfoot th {
   }
   .shadow-custom {
     box-shadow: 3px 3px rgba(0, 0, 0, 0.20)!important;
-    background-color: #36304a!important;
+    background-color: #ff8000c7!important;
     /* box-shadow: 3px 3px #888888 !important; */
     
 }
 /* 
 #myTable_filter {
-    background-color: #36304a!important;
+    background-color: #ff8000c7!important;
     color: #FFF;
     padding: 2px;
     padding-right: 4px;

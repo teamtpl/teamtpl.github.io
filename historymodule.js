@@ -42,7 +42,7 @@ L.control.zoom({
 }).addTo(map);
 
 let layer = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
+    maxZoom: 18,
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 map.addLayer(layer)
@@ -79,8 +79,8 @@ onValue(usersLocation, (snapshot) => {
         livelatlng = [data["lat"], data["long"]];
         latlon.push([data["lat"], data["long"]])
     }
-    
-    
+
+
     if (showlive) {
         markersonchart.forEach(element => {
             map.removeLayer(element)
@@ -96,7 +96,7 @@ onValue(usersLocation, (snapshot) => {
             map.fitBounds(bounds);
             markersonchart.push(marker);
         }
-        
+
     }
 
     console.log(data);
@@ -157,15 +157,15 @@ onValue(usersLocation, (snapshot) => {
 //         });
 //     });
 
-    // // Get the keys and sort them in descending order
-    // const sortedKeys = Object.keys(data).sort((a, b) => b - a);
+// // Get the keys and sort them in descending order
+// const sortedKeys = Object.keys(data).sort((a, b) => b - a);
 
-    // // Loop through the sorted keys to access the corresponding objects
-    // sortedKeys.forEach(key => {
-    //     const obj = data[key];
-    //     // Process obj as needed
-    //     console.log(obj);
-    // });
+// // Loop through the sorted keys to access the corresponding objects
+// sortedKeys.forEach(key => {
+//     const obj = data[key];
+//     // Process obj as needed
+//     console.log(obj);
+// });
 // });
 
 $(document).ready(function () {
